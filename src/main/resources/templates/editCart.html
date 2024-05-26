@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier Commande</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css"/>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Modifier Panier</h1>
+    <form th:object="${cart}" method="post" action="/updateCart">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="mb-3">
+            <label for="title" class="form-label">Titre</label>
+            <input type="text" class="form-control" id="title" th:field="*{title}" required/>
+        </div>
+        <div class="mb-3">
+            <label for="totalPrice" class="form-label">Prix Total</label>
+            <input type="text" class="form-control" id="totalPrice" th:field="*{totalPrice}" required/>
+        </div>
+        <div class="mb-3">
+            <label for="dateCmd" class="form-label">Date de Commande</label>
+            <input type="date" class="form-control" id="dateCmd" th:field="*{dateCmd}" required/>
+        </div>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </form>
+</div>
+
+</body>
+</html>

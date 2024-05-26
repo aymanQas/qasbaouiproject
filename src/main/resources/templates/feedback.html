@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/feedback.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="message" th:if="${message}">
+    <p th:text="${message}" ></p>
+</div>
+
+<div class="x">
+    <img src="/img/feed.jpeg" alt="background image">
+    <nav>
+        <label class="logo">DefoX</label>
+        <ul>
+            <li><a href="Main" >Home</a></li>
+            <li><a href="#"  class="active">Feedback</a></li>
+            <li><a href="order" >Product</a></li>
+        </ul>
+    </nav>
+    <br>
+    <h1>Feedback REPORT</h1>
+    <div class="border">
+        <p>Please help us to serve you better by taking a couple of minutes.</p>
+        <form action="/feedback/submit" method="post" enctype="application/json">
+        <a href="#">How satisfied were you with our service?</a>
+        <div class="group">
+            <input type="checkbox"  id="exc" name="satisfaction" value="Excellent">
+            <label for="exc">Excellent</label>
+        </div>
+
+        <div class="group">
+            <input type="checkbox"  id="gd" name="satisfaction" value="Good">
+            <label for="gd">Good</label>
+        </div>
+
+        <div class="group" >
+            <input type="checkbox"  id="nt" name="satisfaction" value="Neutral">
+            <label for="nt">Neutral</label>
+        </div>
+
+        <div class="group">
+            <input type="checkbox"  id="pr" name="satisfaction" value="Poor">
+            <label for="pr">Poor</label>
+        </div>
+
+        <a href="#">if you have specific feedback please write us...</a>
+
+            <input type="email" name="email" placeholder="Your Email">
+            <input type="text" name="commentaire" placeholder="Additional comments">
+            <input type="submit" value="Submit Feedback">
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

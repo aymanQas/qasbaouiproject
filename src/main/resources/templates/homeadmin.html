@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .icon-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+        .icon-box {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            width: 150px;
+            transition: all 0.3s ease;
+        }
+        .icon-box:hover {
+            background-color: #f8f9fa;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+        .icon-box i {
+            font-size: 50px;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+        .icon-box h5 {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center mt-5">Admin Home</h1>
+    <div class="icon-container">
+        <a href="/index" class="icon-box">
+            <i class="fas fa-home"></i>
+            <h5>Index</h5>
+        </a>
+        <a href="/indexcart" class="icon-box">
+            <i class="fas fa-shopping-cart"></i>
+            <h5>Index Cart</h5>
+        </a>
+        <a href="/feedback/indexfeed" class="icon-box">
+            <i class="fas fa-comments"></i>
+            <h5>Index Feed</h5>
+        </a>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Produits</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <style>
+        .nav-icon {
+            font-size: 1.5rem;
+            margin-right: 8px;
+        }
+        .navbar-custom {
+            background-color: #343a40;
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link {
+            color: #ffffff;
+        }
+        .navbar-custom .nav-link:hover {
+            color: #d3d3d3;
+        }
+        .container-custom {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+    </style>
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Admin Panel</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index" id="nav-addcomm">
+                        <i class="fas fa-desktop nav-icon"></i> AddComm
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/indexcart" id="nav-cartclient">
+                        <i class="fas fa-shopping-cart nav-icon"></i> CartClient
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/indexclient" id="nav-client">
+                        <i class="fas fa-user nav-icon"></i> Client
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/feedback/indexfeed" id="nav-feedclient">
+                        <i class="fas fa-comments nav-icon"></i> FeedClient
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login" id="nav-logout">
+                        <i class="fas fa-sign-out-alt nav-icon"></i> Logout
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="container-custom">
+        <h1 class="text-center mb-4">Liste ajouter commande</h1>
+
+        <div class="row align-items-center mb-4">
+            <div class="col">
+                <form method="get" th:action="@{/index}">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control" th:value="${keyword}" placeholder="Rechercher..." />
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-auto">
+                <a href="/addproduct" class="btn btn-primary">Ajouter Commande</a>
+            </div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>NameClient</th>
+                <th>NameProduit</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p:${listProduits}">
+                <td th:text="${p.getNameClient()}"></td>
+                <td th:text="${p.getName()}"></td>
+                <td th:text="${p.getDescription()}"></td>
+                <td th:text="${p.getPrice()}"></td>
+                <td>
+                    <a th:href="@{editProduit(id=${p.getId()})}" class="btn btn-sm btn-success">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
+                    <a th:href="@{deleteProduit(id=${p.getId()})}" class="btn btn-sm btn-danger">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+    const path = window.location.pathname;
+    switch (path) {
+        case '/index':
+            document.getElementById('nav-addcomm').classList.add('active');
+            break;
+
+    }
+</script>
+
+</body>
+</html>

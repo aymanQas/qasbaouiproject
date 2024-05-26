@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Feedbacks</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .nav-icon {
+            font-size: 1.5rem;
+            margin-right: 8px;
+        }
+        .navbar-custom {
+            background-color: #343a40;
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link {
+            color: #ffffff;
+        }
+        .navbar-custom .nav-link:hover {
+            color: #d3d3d3;
+        }
+        .container-custom {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+        .navbar-nav {
+            margin-left: auto;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Admin Panel</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index" id="nav-addcomm">
+                        <i class="fas fa-desktop nav-icon"></i> AddComm
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/indexcart" id="nav-cartclient">
+                        <i class="fas fa-shopping-cart nav-icon"></i> CartClient
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/indexclient" id="nav-client">
+                        <i class="fas fa-user nav-icon"></i> Client
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/feedback/indexfeed" id="nav-feedclient">
+                        <i class="fas fa-comments nav-icon"></i>  FeedClient
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login" id="nav-logout">
+                        <i class="fas fa-sign-out-alt nav-icon"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="container-custom">
+        <h1 class="text-center mb-4">Liste des Feedbacks</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Satisfaction</th>
+                <th scope="col">Email</th>
+                <th scope="col">Commentaire</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="feedback : ${listFeedbacks}">
+                <td th:text="${feedback.satisfaction}"></td>
+                <td th:text="${feedback.email}"></td>
+                <td th:text="${feedback.commentaire}"></td>
+                <td>
+                    <form th:action="@{'/feedback/delete?id=' + ${feedback.id}}" method="post" th:method="post">
+                        <button type="submit" class="btn btn-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 10z"/>
+                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                            </svg>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+    const path = window.location.pathname;
+    switch (path) {
+        case '/feedback/indexfeed':
+            document.getElementById('nav-feedclient').classList.add('active');
+            break;
+    }
+</script>
+
+</body>
+</html>
